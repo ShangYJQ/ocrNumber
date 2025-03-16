@@ -6,17 +6,16 @@ from torchvision import transforms
 from torchvision import datasets
 from torch.utils.data import DataLoader
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Define the image transformations: convert to grayscale and then to tensor
-    transform = transforms.Compose([
-        transforms.Grayscale(num_output_channels=1),
-        transforms.ToTensor()
-    ])
+    transform = transforms.Compose(
+        [transforms.Grayscale(num_output_channels=1), transforms.ToTensor()]
+    )
 
     # Load the training dataset from the specified directory and apply transformations
-    train_dataset = datasets.ImageFolder(root='./mnist_train', transform=transform)
+    train_dataset = datasets.ImageFolder(root="./mnist_train", transform=transform)
     # Load the test dataset from the specified directory and apply transformations
-    test_dataset = datasets.ImageFolder(root='./mnist_test', transform=transform)
+    test_dataset = datasets.ImageFolder(root="./mnist_test", transform=transform)
     # Print the length of the training dataset
     print("train_dataset length: ", len(train_dataset))
     # Print the length of the test dataset
@@ -48,7 +47,9 @@ if __name__ == '__main__':
     # Define the loss function as cross-entropy loss
     criterion = nn.CrossEntropyLoss()
 
+    # def the epoch number of the train
     epoch_number = 2
+
     # Train the model for 10 epochs
     for epoch in range(epoch_number):
         # Iterate over the batches in the training DataLoader
@@ -65,9 +66,11 @@ if __name__ == '__main__':
             optimizer.zero_grad()
             # Print the loss every 100 batches
             if batch_idx % 100 == 0:
-                print(f"Epoch {epoch + 1}/{epoch_number} "
-                      f"| Batch {batch_idx}/{len(train_loader)} "
-                      f"| Loss: {loss.item():.4f}")
+                print(
+                    f"Epoch {epoch + 1}/{epoch_number} "
+                    f"| Batch {batch_idx}/{len(train_loader)} "
+                    f"| Loss: {loss.item():.4f}"
+                )
 
     # Save the trained model's state dictionary to a file
-    torch.save(model.state_dict(), 'mnist.pth')
+    torch.save(model.state_dict(), "mnist.pth")
