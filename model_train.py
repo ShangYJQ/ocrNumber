@@ -48,7 +48,7 @@ if __name__ == "__main__":
     criterion = nn.CrossEntropyLoss()
 
     # def the epoch number of the train
-    epoch_number = 2
+    epoch_number = 10
 
     # Train the model for 10 epochs
     for epoch in range(epoch_number):
